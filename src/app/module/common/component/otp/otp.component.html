@@ -1,0 +1,22 @@
+<!-- <p>otp works!</p> -->
+<app-loader *ngIf="loader"></app-loader>
+<div class="modals text-center">
+
+  <div class="modal_header ">
+    <h2 mat-dialog-title>OTP Verification</h2>
+    <p>Please enter the OTP send to <span>{{contactData.contactNumber}}</span></p>
+  </div>
+  <form [formGroup]="otpVerification">
+    <mat-dialog-content class="mat-typography">
+        <!-- <ng-otp-input formControlName="otpNumber" name="otpNumber" [config]="{length:4}"></ng-otp-input> -->
+        <!-- <ng-otp-input  (onInputChange)="onOtpChange($event)" formControlName="otpNumber" name="otpNumber" [config]="{length:5}"></ng-otp-input> -->
+        <ng-otp-input type="number" (onInputChange)="onOtpChange($event)" [config]="{length:6}"></ng-otp-input>
+        <p class="restTime" >
+          <span *ngIf="timerOn">{{resetTime}}</span>
+          <a *ngIf="!timerOn" (click)="resentOtp()">Resent OTP</a>
+        </p>
+    </mat-dialog-content>
+    <a mat-button class="submit" (click)="submitOtp()">Submit</a>
+
+  </form>
+</div>

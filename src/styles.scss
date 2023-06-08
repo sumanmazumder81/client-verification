@@ -1,0 +1,343 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Importing Bootstrap SCSS file. */
+// @import '~bootstrap/scss/bootstrap';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+ul{
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+a{
+    text-decoration: none;
+}
+span{
+    display: inline-block;
+}
+$primary_color: #F48634;
+$secondary_color: #35363A;
+$sub_secondary_color: #274cb1;
+$teritory_color: #0295A8;
+
+$gray_color: #c9c9c9;
+
+$normal_font: 16px;
+.success {color: green;}
+.danger {color: red;}
+.warning {color: #ffbc00;}
+.mat-table.cdk-table{
+    width: 100%;
+}
+
+@mixin btn_style($bg_color, $color, $padding){
+    background-color: $bg_color;
+    color: $color;
+    font-size: 15px;
+    padding: $padding;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 1px;
+    img{
+      margin-right: 5px;
+    }
+}
+%border-radius{
+    border-radius: 5px;
+}
+
+.mat-button.mat-button-disabled.mat-button-disabled{
+    background-color: #ffffff;
+    color: #cdcdcd;
+    border:1px solid #cdcdcd;
+}
+.search_list.mat-form-field-appearance-outline .mat-form-field-wrapper{
+    padding-bottom: 0px;
+}
+
+// user entity scss
+.custom-form {
+    .mat-form-field-suffix{
+        mat-icon{
+            top:14px;
+            position: relative;
+            img{
+                width: 16px;
+            }
+        }
+    }
+}
+.login{
+    mat-icon{
+        top:-5px;
+        position: relative;
+    }
+}
+
+
+
+
+
+// right body css
+.totalBody{
+    padding-left: 30px;
+    width: 100%;
+    float: left;
+    background-color: #f1f1f1;
+    // height: 100vh;
+    min-height: 100vh;
+}
+
+
+.withoutArrow{
+    .mat-row{
+        &:after{
+            display: none;
+        }
+    }
+}
+
+ngx-skeleton-loader .loader{
+    background: #ffffff !important;
+    height: 50px !important;
+    border-radius: 10px !important;
+
+}
+ngx-skeleton-loader .loader.progress:before{
+    background-image: linear-gradient(to right, #ffffff, #fbfbfb, #f7f7f7, #f4f4f4, #f0f0f0, #f0f0f0, #f0f0f0, #f0f0f0, #f4f4f4, #f7f7f7, #fbfbfb, #ffffff) !important;
+    width: 300px !important;
+    background-size: 300px 100% !important;
+}
+.list{
+    padding: 0px 30px;
+    width: 100%;
+    float: left;
+    position: relative;
+
+}
+// .mat-paginator {
+//   display: block;
+//   position: fixed;
+//   width: 96%;
+//   right: 0px;
+//   bottom: 0px;
+//   box-shadow: 0px 0px 30px #f1f1f1;
+
+//   .mat-form-field-infix{
+//       padding-top: 0px;
+//   }
+//   .mat-paginator-page-size-select{
+//       margin-top: 0px;
+//   }
+// }
+.mat-paginator-outer-container{
+  position: relative;
+  .mat-paginator-container{
+    flex: 0 0 100%;
+    justify-content: space-between;
+    .mat-paginator-page-size{
+      flex:0 0 30%;
+      width: 30%;
+    }
+    .mat-paginator-range-actions{
+      flex:0 0 68%;
+      width: 68%;
+      justify-content: flex-end;
+      .mat-paginator-range-label{
+        position: absolute;
+        left: 0px;
+        right: 0;
+        margin: 0 auto;
+        width: fit-content;
+        color: $primary_color;
+        font-size: 16px;
+      }
+    }
+  }
+
+}
+
+
+// all tabs css
+.routingComponent{
+  width: initial;
+  float: left;
+  background-color: #ffffff;
+  border-radius: 7px;
+  overflow: hidden;
+  margin-top: 10px;
+  .mat-tab-nav-bar{
+    border-bottom:0px;
+  }
+}
+.tabCustomClass{
+  .mat-tab-link{
+      position: relative;
+      opacity: 1;
+      padding: 0px 30px;
+      &:after{
+          content:'';
+          position: absolute;
+          width: 100%;
+          bottom: 0px;
+          background-color: $primary_color;
+          display: none;
+          height: 100%;
+          z-index: -1;
+      }
+  }
+  .active-link.mat-tab-link {
+      color: #ffffff;
+      &:after{
+          display: block;
+      }
+  }
+
+}
+.mat-icon{
+  height: inherit !important;
+  width: inherit !important;
+  margin-right: 0px !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+// side bar css
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  padding: 0;
+  // box-shadow: inset -1px 0 0 rgb(0 0 0 / 10%);
+  width: 54px;
+  transition: 0.9s ease-in-out 0.1s;
+}
+
+.sidebar.full-width{
+  width: 14% !important;
+  .sidebar-sticky{
+      ul{
+          li{
+              a{
+                  span{
+                      // display: block !important;
+                      left: 56px !important;
+                      width: 100% !important;
+                      opacity: 1 !important;
+                  }
+              }
+          }
+      }
+  }
+  .icon-logo{
+      opacity: 0;
+  }
+  .hover-logo{
+      opacity: 1 !important;
+  }
+}
+
+
+
+
+// dialog box css
+.mat-dialog-container{
+  border-radius: 5px !important;
+}
+.ng-otp-input-wrapper{
+  .otp-input{
+    &:focus{
+      background-color: $sub_secondary_color !important;
+      color: #ffffff;
+    }
+  }
+}
+
+
+
+// slider arrow
+.ng-image-slider .ng-image-slider-container .main .next.disable, .ng-image-slider .ng-image-slider-container .main .prev.disable, .ng-image-slider .ng-image-slider-container .main .next, .ng-image-slider .ng-image-slider-container .main .prev{
+  border-radius: 5px !important;
+  color: $primary_color;
+  border:1px solid #f1f1f1;
+}
+.image_slider .ng-image-slider .ng-image-slider-container .main .prev, .ng-image-slider .ng-image-slider-container .main .prev{
+  top: 3% !important;
+  right: 6% !important;
+  // position: fixed !important;
+  left:inherit !important;
+}
+.image_slider .ng-image-slider .ng-image-slider-container .main .next, .ng-image-slider .ng-image-slider-container .main .next{
+  right: 2% !important;
+  left: inherit !important;
+  top:3% !important;
+}
+
+
+.ng-image-slider .ng-image-slider-container .main .main-inner .img-div img.ratio{
+  position: relative;
+    width: 100%;
+}
+.ng-image-slider .main-inner{
+  display: flex !important;
+}
+.personal_slider .ng-image-slider .ng-image-slider-container .main .prev, .ng-image-slider .ng-image-slider-container .main .prev{
+  left:10px !important;
+  top:50% !important;
+}
+.personal_slider .ng-image-slider .ng-image-slider-container .main .next, .ng-image-slider .ng-image-slider-container .main .next{
+  right:10px !important;
+  top:50% !important;
+}
+.dashboard-right{
+  padding-right: 0px;
+}
+
+
+
+// responsive
+@media only screen and (max-width:1280px){
+
+}
+@media only screen and (max-width:1024px){}
+@media only screen and (max-width:991px){}
+@media only screen and (max-width:767px){
+  .totalBody{padding-left: 0px;}
+  .sidebar{width: 0%; top:7%}
+  .dashboard-right {padding-left: 0px; padding-right: 0px;}
+  .sidebar.full-width{
+    width:50% !important;
+    // .sidebar-sticky{
+    //     ul{
+    //         li{
+    //             a{
+    //                 span{
+    //                     // display: block !important;
+    //                     left: 56px !important;
+    //                     width: 100% !important;
+    //                     opacity: 1 !important;
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+    .icon-logo{
+        opacity: 0;
+    }
+    .hover-logo{
+        opacity: 1 !important;
+    }
+  }
+}
+@media only screen and (max-width:575px){}
+@media only screen and (max-width:480px){}
+@media only screen and (max-width:360px){}
+@media only screen and (max-width:320px){}

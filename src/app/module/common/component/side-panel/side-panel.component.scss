@@ -1,0 +1,82 @@
+@import '../../../../../styles.scss';
+
+.sidebar-sticky{
+    position: sticky;
+    top: 0px;
+    height: calc(100vh - 0px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: $secondary_color;
+    border-radius: 0px 15px 15px 0px;
+    .logo{
+        padding: 15px 0px 30px 10px;
+        position: relative;
+        transition: 0.9s ease-in-out 0.3s;
+        .hover-logo{
+            position: absolute;
+            top: 18px;
+            left: 10px;
+            opacity: 0;
+            transition: 0.9s ease-in-out 0.3s;
+        }
+    }
+    ul{
+        li{
+            margin-bottom: 30px;
+            padding: 0px 5px;
+            position: relative;
+            &:last-child{
+                margin-bottom: 0px;
+            }
+            .icon{
+                width: 40px;
+                height: 40px;
+                background-color: rgba(255,255,255,0.2);
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 0px;
+                svg{
+                    width: 24px;
+                }
+            }
+            a{
+                display: flex;
+                align-items: center;
+                color: white;
+                width: 100%;
+                font-size: $normal_font + 0;
+                .active-icon{
+                    display: none;
+                }
+                &:hover{
+                    color: $primary_color;
+                    .icon{
+                        svg path{
+                            fill: $primary_color;
+                        }
+                    }
+                    .active-icon{
+                        display: block;
+                    }
+                    img{
+                        display: none;
+                    }
+                }
+                span{
+                    position: absolute;
+                    // display: none;
+                    opacity: 0;
+                    // margin-left: 15px;
+                    width: 0%;
+                    left: 25px;
+                    transition: 0.9s ease-in-out 0.3s;
+                }
+            }
+        }
+    }
+
+}
+

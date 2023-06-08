@@ -1,0 +1,165 @@
+<!-- <p>other-information-card works!</p> -->
+<!-- <pre>{{item | json}}</pre> -->
+<div class="row">
+<!-- <div class="card" *ngFor="let item of otherInformations | keyvalue" [ngClass]="item?.value.imageData? 'col-lg-12' : 'col-lg-6'"> -->
+    <div class="card" *ngFor="let item of otherInformations | keyvalue">
+  <div class="row">
+    <div class="col-lg-4" *ngIf="item?.value.imageData">
+      <div class="slider" >
+          <!-- <pre>{{imgCollection | json}}</pre> -->
+          <div class="personal_slider" *ngIf="item?.value.imageData.length>0">
+            <ng-image-slider [images]="item?.value.imageData" [slideImage]="2" #nav></ng-image-slider>
+          </div>
+          <div *ngIf="item?.value.imageData.length==0 || item?.value.imageData == undefined">
+            <p class="no-image"><strong><img src="./assets//images/no_image_available.svg.webp" class="img-fluid"/></strong></p>
+          </div>
+        <!-- <ng-image-slider [images]="imgCollection" [slideImage]="2" #nav></ng-image-slider> -->
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <div class="card-heading d-flex align-items-center justify-content-between flex-wrap">
+        <div class="title d-flex align-items-center">
+          <h3>{{item?.value.Title}}</h3>
+          <p class="status" style="display: none">{{isApproved(item?.value.imageData)}}</p>
+          <p class="status approved" style="background-color: #1CB56E" *ngIf="currentStataus == 'Approved'">Approved</p>
+          <p class="status " style="background-color: #F82424" *ngIf="currentStataus == 'Declined'">Declined</p>
+          <p class="status" style="background-color: #FC9A28" *ngIf="currentStataus == 'Pending'">Pending</p>
+        </div>
+        <a mat-button class="mat-button view" (click)="detailsView(item.value)" *ngIf="item?.value.imageData.length > 0">
+          <img src="./assets/images/single-view-icon.svg" />View
+        </a>
+      </div>
+      <div class="description">
+        <h4>{{item?.value.Title}}</h4>
+        <ul class="ul-list">
+          <li *ngIf="item?.value.companyName">
+            <p>
+              <span>Company Name:</span>{{item?.value.companyName}}</p>
+          </li>
+          <li *ngIf="item?.value.gstNumber">
+            <p>
+              <span>GST No:</span>{{item?.value.gstNumber}}</p>
+          </li>
+          <li *ngIf="item?.value.tradeLicenceNumber">
+            <p>
+              <span>Trade Licence Number:</span>{{item?.value.tradeLicenceNumber}}</p>
+          </li>
+          <li *ngIf="item?.value.AadhaarNumber">
+            <p>
+              <span>Aadhaar Number:</span>{{item?.value.AadhaarNumber}}</p>
+          </li>
+          <li *ngIf="item?.value.PanNumber">
+              <p>
+                <span>Pan Number:</span>{{item?.value.PanNumber}}</p>
+            </li>
+            <li *ngIf="item?.value.LicenceExpiry">
+              <p>
+                <span>Licence expiry:</span>{{item?.value.LicenceExpiry}}</p>
+            </li>
+            <li *ngIf="item?.value.LicenceNo">
+              <p>
+                <span>Licence number:</span>{{item?.value.LicenceNo}}</p>
+            </li>
+            <li *ngIf="item?.value.RefNumber">
+              <p>
+                <span>Ref number:</span>{{item?.value.RefNumber}}</p>
+            </li>
+            <li *ngIf="item?.value.RoadNumber">
+              <p>
+                <span>Road Number:</span>{{item?.value.RoadNumber}}</p>
+            </li>
+            <li *ngIf="item?.value.RCNumber">
+              <p>
+                <span>RC number:</span>{{item?.value.RCNumber}}</p>
+            </li>
+            <li *ngIf="item?.value.ExpireDate">
+              <p>
+                <span>Expire date:</span>{{dateFormet(item?.value.ExpireDate)}}</p>
+            </li>
+            <li *ngIf="item?.value.NationalNumber">
+              <p>
+                <span>National number:</span>{{item?.value.NationalNumber}}</p>
+            </li>
+            <li *ngIf="item?.value.InsuranceNumber">
+              <p>
+                <span>Insurance number:</span>{{item?.value.InsuranceNumber}}</p>
+            </li>
+            <li *ngIf="item?.value.CertifiedNumber">
+              <p>
+                <span>Certified number:</span>{{item?.value.CertifiedNumber}}</p>
+            </li>
+            <li *ngIf="item?.value.FitnessNumber">
+              <p>
+                <span>Fitness number:</span>{{item?.value.FitnessNumber}}</p>
+            </li>
+            <li *ngIf="item?.value.EMIMonths">
+              <p>
+                <span>EMI months:</span>{{item?.value.EMIMonths}}</p>
+            </li>
+            <li *ngIf="item?.value.EMINumber">
+              <p>
+                <span>EMI number:</span>{{item?.value.EMINumber}}</p>
+            </li>
+            <li *ngIf="item?.value.EMIPaidMonths">
+              <p>
+                <span>EMI paid months:</span>{{item?.value.EMIPaidMonths}}</p>
+            </li>
+            <li *ngIf="item?.value.LastEmiPaymentDate">
+              <p>
+                <span>Last EMI Payment date:</span>{{dateFormet(item?.value.LastEmiPaymentDate)}}</p>
+            </li>
+            <li *ngIf="item?.value.Unit">
+              <p>
+                <span>Unit:</span>{{item?.value.Unit}}</p>
+            </li>
+            <li *ngIf="item?.value.Height">
+              <p>
+                <span>Height:</span>{{item?.value.Height}}</p>
+            </li>
+            <li *ngIf="item?.value.Length">
+              <p>
+                <span>Length:</span>{{item?.value.Length}}</p>
+            </li>
+            <li *ngIf="item?.value.Breadth">
+              <p>
+                <span>Breadth:</span>{{item?.value.Breadth}}</p>
+            </li>
+            <li *ngIf="item?.value.RegisterNumber">
+              <p>
+                <span>Register number:</span>{{item?.value.RegisterNumber}}</p>
+            </li>
+            <li *ngIf="item?.value.RegisterNumber">
+              <p>
+                <span>Register date:</span>{{dateFormet(item?.value.RegisterDate)}}</p>
+            </li>
+        </ul>
+        <div class="d-flex align-items-center">
+          <ul *ngFor="let item of item?.value.Documents; let i = index" style="flex:0 0 50%">
+            <p><strong>Document {{i + 1}}</strong></p>
+            <li *ngIf="item?.DocumentName">
+              <p><span>Document name</span>{{item?.DocumentName}}</p>
+            </li>
+            <li *ngIf="item?.DocumentNumber">
+              <p><span>Document number</span>{{item?.DocumentNumber}}</p>
+            </li>
+            <li *ngIf="item?.ExpireDate">
+              <p><span>Expire date</span>{{dateFormet(item?.ExpireDate)}}</p>
+            </li>
+          </ul>
+        </div>
+        <h4 *ngIf="item?.value.address">Address Information</h4>
+        <ul class="ul-list" *ngIf="item?.value.address">
+          <li *ngIf="item?.value.address.city"><p><span>City:</span>{{item?.value.address.city}}</p></li>
+          <li *ngIf="item?.value.address.state"><p><span>State:</span>{{item?.value.address.state}}</p></li>
+          <li *ngIf="item?.value.address.zipCode"><p><span>ZipCode:</span>{{item?.value.address.zipCode}}</p></li>
+          <li *ngIf="item?.value.address.landmark"><p><span>Landmark:</span>{{item?.value.address.landmark}}</p></li>
+          <li *ngIf="item?.value.address.streetNo"><p><span>Street No:</span>{{item?.value.address.streetNo}}</p></li>
+          <li *ngIf="item?.value.address.streetName"><p><span>Street Name:</span>{{item?.value.address.streetName}}</p></li>
+        </ul>
+        <p class="comment" *ngIf="item.value.imageData?.Comment">
+          <span>Comment:</span>{{item.value.imageData.Comment}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

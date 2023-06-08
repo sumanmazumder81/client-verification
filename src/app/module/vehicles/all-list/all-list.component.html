@@ -1,0 +1,5 @@
+<vehicles-app></vehicles-app>
+<app-loader *ngIf="loader"></app-loader>
+<div class="list">
+  <app-list-of-table [allTableData]="allTableData" [pageSize]="pageSize" [isCallFromBackend]="true" [pageIndex]="pageIndex" [dataLength]="dataLength" [tableHeaderData]="displayedColumns" (tableEditId)="edit($event)" (search)="search($event)" (setpagination)="setPegination($event)"></app-list-of-table>
+</div>

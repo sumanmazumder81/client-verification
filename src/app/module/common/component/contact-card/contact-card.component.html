@@ -1,0 +1,28 @@
+<app-loader *ngIf="loader"></app-loader>
+<div class="all-contact row mt-5">
+  <div class="col-lg-4" *ngFor="let item of contactInformation; let i = index">
+    <div class="card">
+      <div class="card-heading">
+        <h3 class="title d-flex align-items-center">
+          <span>0{{i+1}}</span>Contact Verification <p *ngIf="allContactStatus === true" class="status approved">Approved</p></h3>
+      </div>
+      <ul class="ul-list">
+        <li>
+          <span>Full Name :</span>
+          <p>{{item.contactPersonName}}</p>
+        </li>
+        <li>
+          <span>Email Id :</span>
+          <a href="mailto:info@gmail.com">{{item.email}}</a>
+        </li>
+      </ul>
+      <div class="contact-status d-flex justify-content-between align-items-center" *ngFor="let contactData of item?.contactList">
+        <!-- <pre>{{contactData | json}}</pre> -->
+        <a href="tel:+91 789 074 0945">
+          <img src="assets/images/right-icon.svg" *ngIf="contactData?.Status == 'Approved'" />
+          <img src="assets/images/cross-icon.svg" *ngIf="contactData?.Status == 'Pending'" /> {{contactData.contactNo}} <span *ngIf="contactData?.whatappStatus == true">(Whatapp Number)</span></a>
+        <p class="status pending" (click)="openDialog(contactData)" *ngIf='contactData?.Status == "Pending"'>Verify</p>
+      </div>
+    </div>
+  </div>
+</div>

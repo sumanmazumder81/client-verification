@@ -1,0 +1,59 @@
+<app-loader *ngIf="loader"></app-loader>
+<form class="search-form">
+    <mat-form-field appearance="outline" class="search_list">
+        <mat-label>Search for list</mat-label>
+        <input matInput (input)="applyFilter($event.target)" placeholder="Search for owner list" #input>
+        <a *ngIf="input.value" (click)="applyFilter(''); input.value = ''">
+            <mat-icon matSuffix>clear</mat-icon>
+        </a>
+    </mat-form-field>
+</form>
+
+<div class="custom-table withoutArrow">
+    <mat-table mat-table matSort [dataSource]="tableDatas" multiTemplateDataRows>
+        <ng-container [matColumnDef]="item.key" *ngFor="let item of tableHeaderData">
+            <mat-header-cell mat-sort-header *matHeaderCellDef> {{item.label}} </mat-header-cell>
+            <!-- <ng-container *ngIf="item.key !== 'action'; else action"> -->
+            <ng-container *ngIf="item.key !== 'action' && item.key !== 'userEntity.createdDate'">
+              <pre>{{item | json}}</pre>
+                <mat-cell *matCellDef="let element">
+                    <span [innerHTML]="getSellData(element, item.key) | safeHtml"></span>
+                </mat-cell>
+            </ng-container>
+            <ng-container *ngIf="item.key === 'userEntity.createdDate'">
+              <mat-cell *matCellDef="let element">
+                <span>{{moment(element).format('lll')}}</span>
+              </mat-cell>
+            </ng-container>
+            <ng-container *ngIf="item.key === 'action'">
+                <mat-cell *matCellDef="let element">
+                  <a mat-button (click)="readComment(element)" class="read-comment">Read More</a>
+                  <div class="btn-group">
+                      <button mat-menu-item (click)="edit(element.id)">
+                          <mat-icon><img src="assets/images/view-icon.svg" alt=""></mat-icon>
+                        </button>
+                        <p class="accod-arrow-btn"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                          width="24px" height="13.084px" viewBox="0 0 24 13.084" enable-background="new 0 0 24 13.084" xml:space="preserve">
+                       <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M12.027,10.53c0.138-0.178,0.209-0.297,0.306-0.393
+                         c3.223-3.226,6.443-6.453,9.677-9.668c0.199-0.197,0.473-0.363,0.74-0.439c0.419-0.119,0.875,0.131,1.098,0.508
+                         c0.225,0.381,0.2,0.863-0.072,1.215c-0.077,0.097-0.168,0.185-0.257,0.271c-3.521,3.522-7.041,7.044-10.562,10.565
+                         c-0.66,0.657-1.219,0.659-1.872,0.004C7.54,9.049,3.993,5.504,0.449,1.958c-0.679-0.68-0.473-1.68,0.394-1.914
+                         C1.263-0.069,1.624,0.056,1.928,0.36c0.61,0.61,1.221,1.219,1.83,1.829c2.656,2.655,5.311,5.309,7.964,7.965
+                         C11.809,10.242,11.879,10.348,12.027,10.53z"/>
+                       </svg></p>
+                  </div>
+
+                </mat-cell>
+            </ng-container>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" class="example-element-row"></mat-row>
+    </mat-table>
+    <ng-container *ngIf="(tableDatas.data.length == 0) && !skeletonLoader">
+        <div class="noDataFound"><img src="./assets/images/emptyiamge.png" /><br><p>No data found</p></div>
+    </ng-container>
+    <app-skeleton-loader [paginationData]="pageSize" [columns]="columnData" *ngIf="skeletonLoader"></app-skeleton-loader>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements" (page)="onChangePage($event)">
+    </mat-paginator>
+</div>

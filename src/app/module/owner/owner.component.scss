@@ -1,0 +1,7 @@
+@import '../../../styles.scss';
+.mat-tab-links{
+  .active{
+    background-color: $primary_color;
+    color: #ffffff;
+  }
+}

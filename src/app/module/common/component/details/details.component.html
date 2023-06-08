@@ -1,0 +1,25 @@
+<app-loader *ngIf="loader"></app-loader>
+<app-header [vendorEntityType]="getEntityType"></app-header>
+<div class="list">
+  <h2 *ngIf="allEntityData?.Name" class="title">{{allEntityData?.Name}}</h2>
+  <!-- <h2 *ngIf="allEntityData?.OtherInformation[1].RCNumber" class="title">{{allEntityData?.OtherInformation[1].RCNumber}}</h2> -->
+  <app-other-information-card [otherInformations]="otherInformations" [entityType]="getEntityType" [entityId]="entityId" (dialogClosed)="dialogClosed($event)"></app-other-information-card>
+  <div class="row" >
+    <app-contact-card [contactInformation]="contactInformation" [entityId]="entityId" [entityType]="getEntityType" (dialogClosed)="dialogClosed($event)" *ngIf="contactInformation"></app-contact-card>
+  </div>
+  <div class="comment">
+    <form action="" [formGroup]="verificationForm">
+      <mat-form-field appearance="outline" style="width: 100%; background-color: #ffffff; padding: 10px 10px 0px 10px; border-radius: 0.25rem; border: 1px solid rgba(0,0,0,.125);">
+        <mat-label>Comment</mat-label>
+        <textarea matInput name="" id="" cols="30" rows="10" placeholder="Comment" formControlName="comment"></textarea>
+        <mat-error *ngIf="verificationForm?.get('comment')?.errors">
+          Enter some comment if you are declined
+        </mat-error>
+      </mat-form-field>
+      <div class="d-flex align-items-center justify-content-center mt-3" *ngIf='allEntityData?.Status !== "Approved"'>
+        <button (click)="submitApproved()" mat-button class="approve" [disabled]="!btnStatus" >Approved</button>
+        <button (click)="submitDecline()" mat-button class="decline" [disabled]="!verificationForm.valid">Decline</button>
+      </div>
+    </form>
+  </div>
+</div>

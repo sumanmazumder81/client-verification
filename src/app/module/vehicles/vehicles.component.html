@@ -1,0 +1,25 @@
+<div class="module-header">
+  <app-header [vendorEntityType]="vendorEntityType"></app-header>
+</div>
+<div class="list">
+  <div class="routingComponent">
+    <nav mat-tab-nav-bar class="tabCustomClass">
+      <a mat-tab-link (click)="redirect('')" class="active" [ngClass]="{
+        'active': activeClass == ''
+      }"
+      > All </a>
+      <a mat-tab-link (click)="redirect('Approved')" [ngClass]="{
+        'active': activeClass =='Approved'
+      }">Approve</a>
+      <a mat-tab-link (click)="redirect('Pending')"  [ngClass]="{
+        'active': activeClass =='Pending'
+      }"
+      >Pending</a>
+      <a mat-tab-link (click)="redirect('Declined')" [ngClass]="{
+        'active': activeClass =='Declined'
+      }"
+      >Decline</a>
+    </nav>
+  </div>
+  <router-outlet></router-outlet>
+</div>

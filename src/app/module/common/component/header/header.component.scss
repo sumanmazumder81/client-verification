@@ -1,0 +1,94 @@
+@import '../../../../../styles.scss';
+
+// header css
+header{
+    padding: 5px 5px;
+    background-color: white;
+    border-bottom: 1px solid $gray_color;
+    width: 100%;
+    float: left;
+    .header-left{
+      a{
+        display: none;
+      }
+    }
+    h1.title{
+        font-weight: 600;
+        font-size: 24px;
+        color: $primary_color;
+        margin-bottom: 0px;
+        text-transform: capitalize;
+    }
+    p{
+        font-size: 14px;
+        margin-bottom: 0px;
+    }
+    .notification{
+        margin-right: 15px;
+        span{
+            background-color: $primary_color;
+            border-radius: 3px;
+            color: #fff;
+            line-height: 10px;
+            padding: 5px 8px 4px;
+            position: relative;
+            left: -11px;
+            top: -6px;
+            font-size: 12px;
+            border: 2px solid #fff;
+        }
+    }
+    .profile {
+        .profile-image{
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0px 10px 15px #c9c9c9;
+            margin-right: 15px;
+        }
+        p{
+            font-weight: 600;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        button{
+            background-color: transparent;
+            border:0px;
+        }
+    }
+}
+@media only screen and (max-width:1280px){
+
+}
+@media only screen and (max-width:1024px){}
+@media only screen and (max-width:991px){}
+@media only screen and (max-width:767px){
+  header{
+    padding: 5px 10px;
+    .container-fluid{
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+  }
+  .profile{
+    .mat-focus-indicator{
+      min-width: auto;
+      padding: 0px 10px;
+    }
+    p{
+      display: none;
+    }
+  }
+  .header-left{
+    display: flex;
+    align-items: center;
+    a{
+      cursor: pointer;
+      margin-right: 15px;
+      display: block !important;
+    }
+  }
+}
+@media only screen and (max-width:575px){}
+@media only screen and (max-width:480px){}
+@media only screen and (max-width:360px){}
+@media only screen and (max-width:320px){}

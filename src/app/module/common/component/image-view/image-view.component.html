@@ -1,0 +1,153 @@
+<!-- <app-header [vendorEntityType]="vendorEntityType"></app-header> -->
+<app-loader *ngIf="loader"></app-loader>
+<div class="list" #list>
+  <div class="detail-header d-flex align-items-cener">
+    <button (click)="dialogClose()">
+      <mat-icon>
+        <img src="./assets/images/arrow-left.svg" />
+      </mat-icon>
+    </button>
+    <h2>{{data?.data.Title}}</h2>
+  </div>
+  <div class="image_slider" *ngIf="data?.data.imageData?.length > 0">
+    <ng-image-slider #nav [images]="data?.data.imageData" [infinite]="false" [manageImageRatio]=true [autoSlide]="1" [animationSpeed]="0.1"
+      slideImage="1" [imageSize]="{width: 1200, height: 900, space: 4}"></ng-image-slider>
+  </div>
+  <div *ngIf="data?.data.imageData?.length === 0 || data?.data.imageData == undefined">
+      <p class="no-image"><img src="./assets/images/no_image_available.svg.webp" class="img-fluid"/></p>
+  </div>
+  <div class="image-details p-fixed">
+
+    <ul class="ul-list">
+      <h3>Details: &nbsp;&nbsp;&nbsp;</h3>
+      <li *ngIf="data?.data.companyName">
+        <p>
+          <span>Company Name:</span>{{data?.data.companyName}}</p>
+      </li>
+      <li *ngIf="data?.data.gstNumber">
+        <p>
+          <span>GST No:</span>{{data?.data.gstNumber}}</p>
+      </li>
+      <li *ngIf="data?.data.tradeLicenceNumber">
+        <p>
+          <span>Trade Licence Number:</span>{{data?.data.tradeLicenceNumber}}</p>
+      </li>
+      <li *ngIf="data?.data.AadhaarNumber">
+        <p>
+          <span>Aadhaar Number:</span>{{data?.data.AadhaarNumber}}</p>
+      </li>
+      <li *ngIf="data?.data.PanNumber">
+        <p>
+          <span>Pan Number:</span>{{data?.data.PanNumber}}</p>
+      </li>
+      <li *ngIf="data?.data.LicenceExpiry">
+        <p>
+          <span>Licence expiry:</span>{{data?.data.LicenceExpiry}}</p>
+      </li>
+      <li *ngIf="data?.data.LicenceNo">
+        <p>
+          <span>Licence number:</span>{{data?.data.LicenceNo}}</p>
+      </li>
+
+      <li *ngIf="data?.data.RefNumber">
+        <p>
+          <span>Ref number:</span>{{data?.data.RefNumber}}</p>
+      </li>
+      <li *ngIf="data?.data.RoadNumber">
+        <p>
+          <span>Road Number:</span>{{data?.data.RoadNumber}}</p>
+      </li>
+      <li *ngIf="data?.data.RCNumber">
+        <p>
+          <span>RC number:</span>{{data?.data.RCNumber}}</p>
+      </li>
+      <li *ngIf="data?.data.ExpireDate">
+        <p>
+          <span>Expire date:</span>{{dateFormet(data?.data.ExpireDate)}}</p>
+      </li>
+      <li *ngIf="data?.data.NationalNumber">
+        <p>
+          <span>National number:</span>{{data?.data.NationalNumber}}</p>
+      </li>
+      <li *ngIf="data?.data.InsuranceNumber">
+        <p>
+          <span>Insurance number:</span>{{data?.data.InsuranceNumber}}</p>
+      </li>
+      <li *ngIf="data?.data.CertifiedNumber">
+        <p>
+          <span>Certified number:</span>{{data?.data.CertifiedNumber}}</p>
+      </li>
+      <li *ngIf="data?.data.FitnessNumber">
+        <p>
+          <span>Fitness number:</span>{{data?.data.FitnessNumber}}</p>
+      </li>
+      <li *ngIf="data?.data.EMIMonths">
+        <p>
+          <span>EMI months:</span>{{data?.data.EMIMonths}}</p>
+      </li>
+      <li *ngIf="data?.data.EMINumber">
+        <p>
+          <span>EMI number:</span>{{data?.data.EMINumber}}</p>
+      </li>
+      <li *ngIf="data?.data.EMIPaidMonths">
+        <p>
+          <span>EMI paid months:</span>{{data?.data.EMIPaidMonths}}</p>
+      </li>
+      <li *ngIf="data?.data.LastEmiPaymentDate">
+        <p>
+          <span>Last EMI Payment date:</span>{{dateFormet(data?.data.LastEmiPaymentDate)}}</p>
+      </li>
+      <li *ngIf="data?.data.Unit">
+        <p>
+          <span>Unit:</span>{{data?.data.Unit}}</p>
+      </li>
+      <li *ngIf="data?.data.Height">
+        <p>
+          <span>Height:</span>{{data?.data.Height}}</p>
+      </li>
+      <li *ngIf="data?.data.Length">
+        <p>
+          <span>Length:</span>{{data?.data.Length}}</p>
+      </li>
+      <li *ngIf="data?.data.Breadth">
+        <p>
+          <span>Breadth:</span>{{data?.data.Breadth}}</p>
+      </li>
+      <li *ngIf="data?.data.RegisterNumber">
+        <p>
+          <span>Register number:</span>{{data?.data.RegisterNumber}}</p>
+      </li>
+      <li *ngIf="data?.data.RegisterNumber">
+        <p>
+          <span>Register date:</span>{{dateFormet(data?.data.RegisterDate)}}</p>
+      </li>
+    </ul>
+
+        <ul class="ul-list" *ngIf="data?.data.address">
+            <h3 *ngIf="data?.data.address">Address Information: &nbsp;&nbsp;&nbsp;</h3>
+          <li *ngIf="data?.data.address.city"><p><span>City:</span>{{data?.data.address.city}}</p></li>
+          <li *ngIf="data?.data.address.state"><p><span>State:</span>{{data?.data.address.state}}</p></li>
+          <li *ngIf="data?.data.address.zipCode"><p><span>ZipCode:</span>{{data?.data.address.zipCode}}</p></li>
+          <li *ngIf="data?.data.address.landmark"><p><span>Landmark:</span>{{data?.data.address.landmark}}</p></li>
+          <li *ngIf="data?.data.address.streetNo"><p><span>Street No:</span>{{data?.data.address.streetNo}}</p></li>
+          <li *ngIf="data?.data.address.streetName"><p><span>Street Name:</span>{{data?.data.address.streetName}}</p></li>
+        </ul>
+    <div class="comment">
+        <form action="" [formGroup]="verificationForm">
+            <mat-form-field appearance="outline" style="width: 100%; background-color: #ffffff; padding: 10px 10px 0px 10px; border-radius: 0.25rem; border: 1px solid rgba(0,0,0,.125);">
+                <mat-label>Comment</mat-label>
+                <textarea matInput name="" id="" cols="30" rows="10" placeholder="Comment" formControlName="comment"></textarea>
+              </mat-form-field>
+              <mat-error *ngIf="verificationForm?.get('comment')?.errors">
+                Enter some comment if you are declined
+              </mat-error>
+          </form>
+          <!-- <div *ngFor="let item of "> -->
+            <div class="d-flex align-items-center justify-content-center mt-3" *ngIf='!approved'>
+              <button mat-button class="approve" (click)="submitApproved()">Approve</button>
+              <button mat-button class="" [disabled]="!verificationForm.valid" (click)="submitDeclined()">Decline</button>
+            </div>
+          <!-- </div> -->
+    </div>
+  </div>
+</div>
